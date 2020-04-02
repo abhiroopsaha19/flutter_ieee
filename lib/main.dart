@@ -65,7 +65,26 @@ class MyHomePage extends StatelessWidget {
 //          title: Text(title, style: TextStyle(color:Colors.white)),
 
       // body: Center(child: Text('Find the nearest trails now',textAlign:TextAlign.start,style:TextStyle(height: 1, fontSize: 20,))),
-
+      bottomNavigationBar: Container(
+        color: Colors.white,
+        height: 50.0,
+        alignment: Alignment.center,
+        child: new BottomAppBar(
+          child: new Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              new IconButton(
+                  icon: Icon(Icons.announcement,color:Colors.blue,),
+                  onPressed: null
+              ),
+              new IconButton(
+                  icon: Icon(Icons.payment,color:Colors.red),
+                  onPressed: null
+              ),
+            ],
+          ),
+        ),
+      ),
       drawer: Drawer(
 
         // Add a ListView to the drawer. This ensures the user can scroll
