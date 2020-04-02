@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_ieee/Public.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+
+
 
 
 void main() => runApp(MyApp());
@@ -48,7 +52,13 @@ class MyHomePage extends StatelessWidget {
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 12.0),
-            child: Icon(Icons.ondemand_video,size: 35.0,color:Colors.black,),
+            child:new IconButton(
+            icon: new Icon(Icons.ondemand_video,size: 35.0,color:Colors.black),
+              onPressed: _launchURL,
+
+
+            ),
+
           )
         ],
       ),
@@ -144,5 +154,14 @@ class SecondRoute extends StatelessWidget {
 
         )
     );
+  }
+}
+
+_launchURL() async {
+  const url = 'https://www.youtube.com/channel/UC07-dOwgza1IguKA86jqxNA';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }
