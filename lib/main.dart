@@ -92,7 +92,6 @@ class MyHomePage extends StatelessWidget {
                 child: Row(children: <Widget>[
                   Padding(padding: EdgeInsets.only(left: 60.00, top: 20.00, right: 10.00, bottom: 20.00),
                       child: Image.asset('assets/washhands.png')),
-
                   Padding(padding: EdgeInsets.all(20.00),
                       child: Image.asset('assets/distance.png'))])),
             Padding(padding: EdgeInsets.all(10.00),
@@ -140,6 +139,31 @@ class MyHomePage extends StatelessWidget {
             child: Text('- Ministry of Health and Family Welfare of India.', style: TextStyle(color: Color(0xFF2B276D), fontSize: 13.00, fontWeight: FontWeight.bold)),
           ))]),
 
+      // body: Center(child: Text('Find the nearest trails now',textAlign:TextAlign.start,style:TextStyle(height: 1, fontSize: 20,))),
+      bottomNavigationBar: Container(
+        color: Colors.white,
+        height: 50.0,
+        alignment: Alignment.center,
+        child: new BottomAppBar(
+          child: new Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              new IconButton(
+                  icon: Icon(Icons.announcement,color:Colors.blue,),
+                  onPressed: null
+              ),
+              new IconButton(
+                  icon: Icon(Icons.payment,color:Colors.red),
+                  onPressed: null
+              ),
+              new IconButton(
+                  icon: Icon(Icons.track_changes,color:Colors.green),
+                  onPressed: null
+              ),
+            ],
+          ),
+        ),
+      ),
       drawer: Drawer(
 
         // Add a ListView to the drawer. This ensures the user can scroll
