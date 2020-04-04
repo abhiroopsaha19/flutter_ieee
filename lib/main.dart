@@ -341,6 +341,7 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
         drawer: Drawer(
+
           // Add a ListView to the drawer. This ensures the user can scroll
           // through the options in the drawer if there isn't enough vertical
           // space to fit everything.
@@ -369,7 +370,9 @@ class MyHomePage extends StatelessWidget {
                         fontWeight: FontWeight.w500),
                   ),
                   currentAccountPicture: new CircleAvatar(
-                    backgroundColor: Colors.white,
+                      child:Padding(
+                          padding: EdgeInsets.all(1.0),
+                          child: Image.asset('assets/logo.png'))
                   ),
                 ),
                 ListTile(
