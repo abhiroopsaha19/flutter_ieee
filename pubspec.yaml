@@ -22,6 +22,7 @@ environment:
 
 dependencies:
   url_launcher: ^5.2.7
+  http: 0.12.0+4
   flutter:
     sdk: flutter
 
@@ -51,8 +52,7 @@ flutter:
     - assets/wearmask.png
     - assets/distance.png
     - assets/sick.png
-    - assets/symptoms.png
-    - assets/symptoms-2.png
+    - assets/W1.png
     #- images/a_dot_burr.jpeg
     #- images/a_dot_ham.jpeg
 
