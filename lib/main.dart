@@ -33,14 +33,14 @@ class MyHomePage extends StatelessWidget {
     return new Scaffold(
         key: _scaffoldKey,
         appBar: new AppBar(
-          backgroundColor: Color(0xFFFFFFFF),
+          backgroundColor:Colors.deepPurple,
           title: new Text(title,
-              style: TextStyle(color: Colors.black, fontSize: 18.0)),
+              style: TextStyle(color: Colors.white,fontSize: 18.0)),
           centerTitle: true,
           elevation: 1.2,
           leading: IconButton(
             icon: Icon(Icons.menu),
-            color: Colors.black,
+            color: Colors.white,
             onPressed: () {
               _scaffoldKey.currentState.openDrawer();
             },
@@ -50,7 +50,7 @@ class MyHomePage extends StatelessWidget {
               padding: const EdgeInsets.only(right: 12.0),
               child: new IconButton(
                 icon: new Icon(Icons.ondemand_video,
-                    size: 35.0, color: Colors.black),
+                    size: 35.0, color: Colors.white),
                 onPressed: _launchURL,
               ),
             )
