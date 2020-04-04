@@ -1,9 +1,11 @@
+import 'dart:convert';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_ieee/Public.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
 void main() => runApp(MyApp());
@@ -328,7 +330,12 @@ class MyHomePage extends StatelessWidget {
                     onPressed: null),
                 new IconButton(
                     icon: Icon(Icons.track_changes, color: Colors.green),
-                    onPressed: null),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => FifthRoute()),
+                      );
+                    })
               ],
             ),
           ),
@@ -718,6 +725,101 @@ class FourthRoute extends StatelessWidget {
   }
 }
 
+class FifthRoute extends StatefulWidget {
+  FifthRoute({Key key}) : super(key: key);
+
+  @override
+  _fifthRouteState createState() => _fifthRouteState();
+}
+
+class _fifthRouteState extends State<FifthRoute> {
+  Future<COVID> futureCOVID;
+  @override
+  void initState() {
+    super.initState();
+    futureCOVID = _makeGetRequest();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+        title: "",
+//      home: new Text("Add Google fonts to Flutter App")
+        home: new Scaffold(
+            appBar: new AppBar(
+              backgroundColor: Color(0xFFFFFFFF),
+              leading: new IconButton(
+                icon: new Icon(Icons.arrow_back, color: Colors.black),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              title: new Text(
+                "COVID-19 Statistics",
+                style: TextStyle(color: Color(0xFF2B276D), fontSize: 15.00),
+              ),
+            ),
+            body: ListView(children: <Widget>[
+              GestureDetector(
+                  onTap: openUrlS,
+                  child: Card(
+                    margin: EdgeInsets.all(20.00),
+                    child: Padding(
+                      padding: EdgeInsets.all(10.00),
+                      child: Text('',
+                          style: TextStyle(
+                              color: Color(0xFF2B276D),
+                              fontSize: 15.00,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                  )),
+              Card(
+                margin: EdgeInsets.all(20.00),
+                child: Column(children: <Widget>[
+                  Padding(
+                      padding: EdgeInsets.all(10.00),
+                      child: FutureBuilder<COVID>(
+                          future: futureCOVID,
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              print(snapshot.data.totalCases);
+                              return Text(snapshot.data.totalCases);
+                            }
+                            return CircularProgressIndicator();
+                          })),
+                  // TODO write parental Guidance
+                  Padding(
+                    padding: EdgeInsets.all(10.00),
+                    child: Text('Recovered: ',
+                        style: TextStyle(color: Color(0xFF2B276D))),
+                  ),
+                  // TODO write parental Guidance
+                  Padding(
+                    padding: EdgeInsets.all(10.00),
+                    child: Text('Deceased: ',
+                        style: TextStyle(color: Color(0xFF2B276D))),
+                  ),
+                  // TODO write parental Guidance
+                  Padding(
+                    padding: EdgeInsets.all(10.00),
+                    child: Text('Mortality Rate: ',
+                        style: TextStyle(color: Color(0xFF2B276D))),
+                  ),
+                  // TODO write parental Guidance
+                  Padding(
+                    padding: EdgeInsets.all(10.00),
+                    child: Text('', style: TextStyle(color: Color(0xFF2B276D))),
+                  ),
+                  // TODO write parental Guidance
+                  Padding(
+                    padding: EdgeInsets.all(10.00),
+                    child: Text('', style: TextStyle(color: Color(0xFF2B276D))),
+                  ),
+                  // TODO write parental Guidance
+                ]),
+              ),
+            ])));
+  }
+}
+
 _launchURL() async {
   const url = 'https://www.youtube.com/channel/UC07-dOwgza1IguKA86jqxNA';
   if (await canLaunch(url)) {
@@ -770,5 +872,41 @@ openG() async {
     await launch(url);
   } else {
     throw 'Could not launch $url';
+  }
+}
+
+Future<COVID> _makeGetRequest() async {
+  String url = 'https://api.rootnet.in/covid19-in/stats/latest';
+  final response = await http.get(url);
+  // sample info available in response
+  int statusCode = response.statusCode;
+  if (statusCode == 200) {
+    print(json.decode(response.body));
+    return COVID.fromJson(json.decode(response.body));
+  }
+}
+
+class COVID {
+  final String totalCases;
+
+  COVID({this.totalCases});
+
+  factory COVID.fromJson(Map<String, dynamic> json) {
+    return COVID(totalCases: json['summary']);
+  }
+}
+
+class Source {
+  String totalCases;
+  String recovered;
+  String deceased;
+
+  Source({this.totalCases, this.recovered, this.deceased});
+
+  factory Source.fromJson(Map<String, dynamic> json) {
+    return Source(
+        totalCases: json["total"] as String,
+        recovered: json["discharged"] as String,
+        deceased: json["deaths"]);
   }
 }
