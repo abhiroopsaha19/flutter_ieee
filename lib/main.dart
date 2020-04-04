@@ -126,12 +126,12 @@ class MyHomePage extends StatelessWidget {
                             fontSize: 15.00,
                             fontWeight: FontWeight.bold))),
                 Padding(
-                    padding: EdgeInsets.only(
-                        left: 80, top: 20, bottom: 20, right: 20),
+                    padding: EdgeInsets.all(10.00),
                     child: Row(children: <Widget>[
                       Column(children: <Widget>[
                         Padding(
-                            padding: EdgeInsets.all(0.0),
+                            padding: EdgeInsets.only(
+                                left: 70, top: 10, bottom: 20, right: 20),
                             child: Image.asset('assets/washhands.png')),
                         Text(
                           '',
@@ -141,7 +141,7 @@ class MyHomePage extends StatelessWidget {
                       ]),
                       Column(children: <Widget>[
                         Padding(
-                            padding: EdgeInsets.all(40.00),
+                            padding: EdgeInsets.all(10.00),
                             child: Image.asset('assets/distance.png')),
                         Text(
                           '',
@@ -151,14 +151,14 @@ class MyHomePage extends StatelessWidget {
                       ])
                     ])),
                 Padding(
-                    padding: EdgeInsets.only(
-                        left: 80, top: 20, right: 20, bottom: 20),
+                    padding: EdgeInsets.all(10.00),
                     child: Row(children: <Widget>[
                       Column(
                         children: <Widget>[
                           Padding(
-                              padding: EdgeInsets.all(0.0),
-                              child: Image.asset('assets/washhands.png')),
+                              padding: EdgeInsets.only(
+                                  left: 70, top: 10, bottom: 20, right: 20),
+                              child: Image.asset('assets/facetouch.png')),
                           Text(
                             '',
                             style: TextStyle(
@@ -168,8 +168,8 @@ class MyHomePage extends StatelessWidget {
                       ),
                       Column(children: <Widget>[
                         Padding(
-                            padding: EdgeInsets.all(40.00),
-                            child: Image.asset('assets/distance.png')),
+                            padding: EdgeInsets.all(10.00),
+                            child: Image.asset('assets/callforhelp.png')),
                         Text(
                           '',
                           style:
@@ -746,80 +746,106 @@ class _fifthRouteState extends State<FifthRoute> {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-        title: "",
+      title: "",
 //      home: new Text("Add Google fonts to Flutter App")
-        home: new Scaffold(
-            appBar: new AppBar(
-              backgroundColor: Color(0xFFFFFFFF),
-              leading: new IconButton(
-                icon: new Icon(Icons.arrow_back, color: Colors.black),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-              title: new Text(
-                "COVID-19 Statistics",
-                style: TextStyle(color: Color(0xFF2B276D), fontSize: 15.00),
-              ),
-            ),
-            body: ListView(children: <Widget>[
-              GestureDetector(
-                  onTap: openUrlS,
-                  child: Card(
-                    margin: EdgeInsets.all(20.00),
+      home: new Scaffold(
+        appBar: new AppBar(
+          backgroundColor: Color(0xFFFFFFFF),
+          leading: new IconButton(
+            icon: new Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          title: new Text(
+            "COVID-19 Statistics",
+            style: TextStyle(color: Color(0xFF2B276D), fontSize: 15.00),
+          ),
+        ),
+        body: ListView(children: <Widget>[
+          GestureDetector(
+              onTap: openUrlS,
+              child: Card(
+                  child: Column(children: <Widget>[
+                Padding(
+                  padding:
+                      EdgeInsets.only(left: 50, top: 20, right: 20, bottom: 20),
+                  child: Text('Stay Home, Stay Safe!',
+                      style: TextStyle(
+                          color: Color(0xFF2B276D),
+                          fontSize: 15.00,
+                          fontWeight: FontWeight.bold)),
+                ),
+                Image.asset('assets/statistics.png')
+              ]))),
+          Card(
+              margin: EdgeInsets.all(20.00),
+              child: Column(children: <Widget>[
+                Padding(
+                    padding: EdgeInsets.all(10.00),
                     child: Padding(
-                      padding: EdgeInsets.all(10.00),
-                      child: Text('',
+                        padding: EdgeInsets.all(20.00),
+                        child: Text(
+                          'Total Number of Cases : 2902',
                           style: TextStyle(
-                              color: Color(0xFF2B276D),
-                              fontSize: 15.00,
-                              fontWeight: FontWeight.bold)),
-                    ),
-                  )),
-              Card(
-                margin: EdgeInsets.all(20.00),
-                child: Column(children: <Widget>[
-                  Padding(
-                      padding: EdgeInsets.all(10.00),
-                      child: FutureBuilder<COVID>(
-                          future: futureCOVID,
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              print(snapshot.data.totalCases);
-                              return Text(snapshot.data.totalCases);
-                            }
-                            return CircularProgressIndicator();
-                          })),
-                  // TODO write parental Guidance
-                  Padding(
-                    padding: EdgeInsets.all(10.00),
-                    child: Text('Recovered: ',
-                        style: TextStyle(color: Color(0xFF2B276D))),
+                              color: Colors.indigo,
+                              fontSize: 20.00,
+                              fontWeight: FontWeight.bold),
+                        ))),
+                // TODO write parental Guidance
+                Padding(
+                  padding: EdgeInsets.all(10.00),
+                  child: Text(
+                    'Recovered : 184',
+                    style: TextStyle(
+                        color: Colors.indigo,
+                        fontSize: 20.00,
+                        fontWeight: FontWeight.bold),
                   ),
-                  // TODO write parental Guidance
-                  Padding(
-                    padding: EdgeInsets.all(10.00),
-                    child: Text('Deceased: ',
-                        style: TextStyle(color: Color(0xFF2B276D))),
+                ),
+                // TODO write parental Guidance
+                Padding(
+                  padding: EdgeInsets.all(10.00),
+                  child: Text(
+                    'Deceased : 68',
+                    style: TextStyle(
+                        color: Colors.indigo,
+                        fontSize: 20.00,
+                        fontWeight: FontWeight.bold),
                   ),
-                  // TODO write parental Guidance
-                  Padding(
+                ),
+                // TODO write parental Guidance
+                Padding(
+                  padding: EdgeInsets.all(10.00),
+                  child: Text('Karnataka Statistics',
+                      style: TextStyle(color: Colors.grey)),
+                ),
+                // TODO write parental Guidance
+                Padding(
                     padding: EdgeInsets.all(10.00),
-                    child: Text('Mortality Rate: ',
-                        style: TextStyle(color: Color(0xFF2B276D))),
-                  ),
-                  // TODO write parental Guidance
-                  Padding(
+                    child: Text('Total number of Cases : 128',
+                        style: TextStyle(
+                            color: Colors.indigo,
+                            fontSize: 20.00,
+                            fontWeight: FontWeight.bold))),
+                // TODO write parental Guidance
+                Padding(
                     padding: EdgeInsets.all(10.00),
-                    child: Text('', style: TextStyle(color: Color(0xFF2B276D))),
-                  ),
-                  // TODO write parental Guidance
-                  Padding(
+                    child: Text('Recovered : 12',
+                        style: TextStyle(
+                            color: Colors.indigo,
+                            fontSize: 20.00,
+                            fontWeight: FontWeight.bold))),
+                Padding(
                     padding: EdgeInsets.all(10.00),
-                    child: Text('', style: TextStyle(color: Color(0xFF2B276D))),
-                  ),
-                  // TODO write parental Guidance
-                ]),
-              ),
-            ])));
+                    child: Text('Deaths : 3',
+                        style: TextStyle(
+                            color: Colors.indigo,
+                            fontSize: 20.00,
+                            fontWeight: FontWeight.bold)))
+              ])),
+          // TODO write parental Guidance
+        ]),
+      ),
+    );
   }
 }
 
